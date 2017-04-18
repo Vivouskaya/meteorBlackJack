@@ -31,6 +31,10 @@
    width: 77%;
    padding-bottom: 77%;
    position: relative;
+   /*
+   border-style: solid;
+   border-color: grey;
+   */
    /* 
     Child elements with absolute positioning will be 
     positioned relative to this div 
@@ -52,6 +56,9 @@
     Offset the position correctly with
     minus half of the width and minus half of the height 
    */
+   border-style: inset;
+   border-color: green;
+   border-width: 2vw;
  }
 
  .inner-circle div {
@@ -63,7 +70,7 @@
     text-align:center;
     color:white;
     font-family: Gun;
-    font-size: 5vw;
+    font-size: 4.25vw;
     color: yellow;
  }
 

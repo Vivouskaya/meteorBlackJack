@@ -63,14 +63,26 @@
 
  .avatar-IA {
    position: absolute;
-   margin: -17% 0% 0% -17%;
+   margin: 1vw 0vw 0vw 33.5vw;
+   z-index: 9999; 
+ }
+
+ .avatar-player {
+   position: absolute;
+   margin: 36vw 0vw 0vw 33.5vw;
+   z-index: 9999;
  }
 
  .croupier {
    height: 6vw;
    width: 6vw;
    border-radius: 50%;
-   z-index: 9999;  
+ }
+
+ .player {
+   height: 6vw;
+   width: 6vw;
+   border-radius: 50%;
  }
 
  .user1 {
@@ -116,11 +128,25 @@
     color: yellow;
  }
 
- .getCard {
+ .actions {
+    position: absolute;
     text-align:center;
     font-family: Gun;
     font-size: 2vw;
-    margin-left: 10vw;
+    margin: 25vw 0vw 0vw 31vw;
+    z-index: 9999;
+ }
+
+ .card {
+  position: absolute;
+  display: inline-block;
+  background-color: #F7F7F7;
+  height: 4.5vw;
+  width: 3.5vw;
+  border-style: outset;
+  border-color: red;
+  border-radius: 10%;
+  margin-left: 5vw;
  }
 
 body {

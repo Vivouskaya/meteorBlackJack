@@ -1,5 +1,13 @@
 <template name="tablePage">
   <div class="tablePage">
+    <div class="left-top-score">
+      <p>
+        users in game: <br/>
+        {{#each users}}
+          {{username}}<br/>
+        {{/each}}
+      </p>
+    </div>
     <div class="tableStyle1">
     	<div class="outer-circle">
         <!-- avatars & buttons -->
@@ -10,14 +18,18 @@
           <img class="player" src="/img/profileActif.png" />
         </div>
         <div class="player-card-location">
-            
+          {{#each handsPlayed}}
+            <div class="card">
+              {{sign}}
+            </div>
+          {{/each}}
         </div>
         <div class="actions">
           <button class="deal">deal</button>
         </div>
         <!-- inner circle & Title table -->
   		  <div class="inner-circle">
-  		  	<div>[ BlackJack ]</div>
+  		  	<div>[ {{name}} ]</div>
   		  </div>
 		  </div>
     </div>

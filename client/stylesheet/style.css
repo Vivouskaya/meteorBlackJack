@@ -28,8 +28,8 @@
    background: #191F1D;
    border-radius: 50%;
    margin: 0 auto;
-   width: 43vw;
-   padding-bottom: 43vw;
+   width: 45vw;
+   padding-bottom: 45vw;
    position: relative;
    /*
    border-style: solid;
@@ -63,14 +63,8 @@
 
  .avatar-IA {
    position: absolute;
-   margin: 1vw 0vw 0vw 33.5vw;
+   margin: 1% 0% 0% 44%;
    z-index: 9999; 
- }
-
- .avatar-player {
-   position: absolute;
-   margin: 36vw 0vw 0vw 33.5vw;
-   z-index: 9999;
  }
 
  .croupier {
@@ -79,40 +73,45 @@
    border-radius: 50%;
  }
 
+ .avatar-player {
+   position: absolute;
+   margin: 85% 0% 0% 44%;
+   z-index: 9999;
+ }
+
  .player {
    height: 6vw;
    width: 6vw;
    border-radius: 50%;
  }
 
- .user1 {
+ .player-card-location {
    position: absolute;
-   height: 6vw;
-   width: 6vw;
-   border-radius: 50%;
-   margin-left: 15vw;
-   margin-top: 18vw;
-   z-index: 9999;  
+   margin: 75% 0% 0% 44%;
+   z-index: 9999;
  }
 
- .user2 {
-   position: absolute;
-   height: 6vw;
-   width: 6vw;
-   border-radius: 50%;
-   margin-left: 34vw;
-   margin-top: 37vw;
-   z-index: 9999;  
+ .actions {
+    position: absolute;
+    text-align:center;
+    font-family: Gun;
+    font-size: 2vw;
+    margin: 55% 0% 0% 37%;
+    z-index: 9999;
+    height: 4vw;
+    width: 12vw;
  }
 
- .user3 {
-   position: absolute;
-   height: 6vw;
-   width: 6vw;
-   border-radius: 50%;
-   margin-left: 52vw;
-   margin-top: 18vw;
-   z-index: 9999;  
+ .card {
+  float: right;
+  position: relative;
+  display: inline-block;
+  background-color: #F7F7F7;
+  height: 4.5vw;
+  width: 3vw;
+  border: outset 0.2vw;
+  border-color: red;
+  border-radius: 10%;
  }
 
  .inner-circle div {
@@ -126,27 +125,6 @@
     font-family: Gun;
     font-size: 4.25vw;
     color: yellow;
- }
-
- .actions {
-    position: absolute;
-    text-align:center;
-    font-family: Gun;
-    font-size: 2vw;
-    margin: 25vw 0vw 0vw 31vw;
-    z-index: 9999;
- }
-
- .card {
-  position: absolute;
-  display: inline-block;
-  background-color: #F7F7F7;
-  height: 4.5vw;
-  width: 3.5vw;
-  border-style: outset;
-  border-color: red;
-  border-radius: 10%;
-  margin-left: 5vw;
  }
 
 body {

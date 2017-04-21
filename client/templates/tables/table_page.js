@@ -13,7 +13,7 @@ Template.tablePage.events({
   	var tableId = Router.current().params._id;
 
     Meteor.call('dealCard', tableId, function(error, result) {
-        $('.avatar-player').prepend('<div class="card"></div>');
+        $('.player-card-location').prepend('<div class="card">num:'+result.numero+'<br/>pts: '+result.value+'</div>');
     });
   }
 });

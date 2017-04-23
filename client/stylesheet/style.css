@@ -33,8 +33,8 @@
    background: #191F1D;
    border-radius: 50%;
    margin: 0 auto;
-   width: 45vw;
-   padding-bottom: 45vw;
+   width: 43vw;
+   padding-bottom: 43vw;
    position: relative;
    /*
    border-style: solid;
@@ -84,6 +84,10 @@
    z-index: 9999;
  }
 
+ .avatar-player-2 {
+   display: inline-block;
+ }
+
  .player {
    height: 6vw;
    width: 6vw;
@@ -94,6 +98,33 @@
    position: absolute;
    margin: 75% 0% 0% 44%;
    z-index: 9999;
+ }
+
+ .score {
+   font-size: 1.5vw;
+   display:block;
+   width: 35%;
+   border-radius: 100%;
+   text-align: center;
+   margin-left: 32%;
+ }
+
+ .grey {
+   background-color: #EEEEEE;
+ }
+
+ .green {
+   background-color: #5BBF59;
+ }
+
+ .red {
+   background-color: red;
+ }
+
+ .username {
+   font-family: Gun;
+   text-align: center;
+   display: block;
  }
 
  .actions {
@@ -107,6 +138,10 @@
     width: 12vw;
  }
 
+ .card-location {
+  display: inline-block;
+ }
+
  .card {
   float: right;
   position: relative;
@@ -117,6 +152,7 @@
   border: outset 0.2vw;
   border-color: red;
   border-radius: 10%;
+  z-index: 99999;
  }
 
  .inner-circle div {

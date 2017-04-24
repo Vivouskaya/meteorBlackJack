@@ -29,6 +29,12 @@
     margin: 0 auto;
   }
 
+  .right-top-player-selected {
+    position: absolute;
+    left: 88%;
+    font-family: Gun;
+  }
+
   .tableStyle1 .outer-circle {
    background: #191F1D;
    border-radius: 50%;

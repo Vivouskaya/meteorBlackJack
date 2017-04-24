@@ -19,7 +19,13 @@ Template.tablePage.helpers({
             ["order", "desc"]
         ]
     });
-	}
+	},
+  playerSelected: function() {
+    var usersReady = Turns.find({flagged: "waiting"}).fetch();
+    return console.log(usersReady);
+  }
+
+
 });
 
 Template.tablePage.rendered = function(){

@@ -21,16 +21,38 @@ Template.tablePage.helpers({
     });
 	},
   playerSelected: function() {
-    var usersReady = Turns.find({flagged: "waiting"}).fetch();
-    return console.log(usersReady);
-  }
+    var tableId = Router.current().params._id;
+    //var currentUser = Meteor.user();
 
-
+    var userInProgress = Turns.findOne({tableId: tableId, flagged: "in_progress"});
+    if(userInProgress) {
+      return "in progress";
+    }
+    else if(!userInProgress) {
+      var userReady = Turns.findOne({tableId: tableId, flagged: "ready"});
+      if (userReady) {
+        //userReady.update({flagged: "in_progress"});
+        Turns.update({tableId: tableId}, { $set: { flagged: "in_progress" }});
+        //return "update In progress";
+      }
+      else {
+        var userWaiting = Turns.findOne({tableId: tableId, flagged: "waiting"});
+        if(userWaiting) {
+          //return "Waiting";
+          //userWaiting.update($set {flagged: "ready"});
+          Turns.update({tableId: tableId}, { $set: { flagged: "ready" }});
+          return "ready";
+        }
+        else {
+          var usersAllDone = Turns.findOne({tableId: tableId, flagged: "done"});
+          if(usersAllDone) {
+            return "Done";
+          }
+        }
+      }
+    }
+  } 
 });
-
-Template.tablePage.rendered = function(){
-  
-};
 
 Template.tablePage.events({
   'click button': function(e) {

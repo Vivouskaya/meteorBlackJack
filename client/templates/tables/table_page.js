@@ -22,25 +22,22 @@ Template.tablePage.helpers({
 	},
   playerSelected: function() {
     var tableId = Router.current().params._id;
-    //var currentUser = Meteor.user();
-
     var userInProgress = Turns.findOne({tableId: tableId, flagged: "in_progress"});
     if(userInProgress) {
-      return "in progress";
+      //return "in progress";
+      return userInProgress.user;
     }
     else if(!userInProgress) {
       var userReady = Turns.findOne({tableId: tableId, flagged: "ready"});
       if (userReady) {
-        //userReady.update({flagged: "in_progress"});
-        Turns.update({tableId: tableId}, { $set: { flagged: "in_progress" }});
-        //return "update In progress";
+        Turns.update({_id: userReady._id}, {$set: {'flagged':'in_progress'}});
+        return "update In progress";
       }
       else {
         var userWaiting = Turns.findOne({tableId: tableId, flagged: "waiting"});
         if(userWaiting) {
           //return "Waiting";
-          //userWaiting.update($set {flagged: "ready"});
-          Turns.update({tableId: tableId}, { $set: { flagged: "ready" }});
+          Turns.update({_id: userWaiting._id}, {$set: {'flagged':'ready'}});
           return "ready";
         }
         else {
@@ -51,6 +48,12 @@ Template.tablePage.helpers({
         }
       }
     }
+  },
+  yourTurn: function() {
+    var tableId = Router.current().params._id;
+    var userInProgressId = Turns.findOne({tableId: tableId, flagged: "in_progress", 'user._id': Meteor.userId()});
+
+    return userInProgressId;
   } 
 });
 
@@ -58,8 +61,7 @@ Template.tablePage.events({
   'click button': function(e) {
   	var tableId = Router.current().params._id;
     Meteor.call('dealCard', tableId, function(error, result) {
-    	//return true;
-        //$('.player-card-location').prepend('<div class="card">num:'+result.numero+'<br/>pts: '+result.value+'</div>');
+      
     });
   }
 });

@@ -19,7 +19,7 @@
     </div>
     <div class="right-top-player-selected">
       <p>Player Selected:</p> <br/>
-      {{ playerSelected }} 
+      {{ playerSelected.username }}
     </div>
     <div class="tableStyle1">
     	<div class="outer-circle">
@@ -37,9 +37,11 @@
           {{/each}}
         </div>
         -->
+        {{# if yourTurn}}
         <div class="actions">
           <button class="deal">deal</button>
         </div>
+        {{/if}}
         <!-- inner circle & Title table -->
   		  <div class="inner-circle">
   		  	<div>[ {{name}} ]</div>

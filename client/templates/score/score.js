@@ -27,7 +27,7 @@ Template.score.helpers({
     else {
       color = 'red';
     }
-
+    
     return color;
   } 
 });

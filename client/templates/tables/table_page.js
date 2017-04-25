@@ -41,18 +41,25 @@ Template.tablePage.helpers({
           var userDone = Turns.findOne({tableId: tableId, flagged: "done"});
           if(!userDone) {
           */
+            
             Turns.update({_id: userWaiting._id}, {$set: {'flagged':'ready'}});
             return "ready";
+            
           //}
         }
         else {
-          var userDone = Turns.findOne({tableId: tableId, flagged: "done"});
-          if(userDone) {
+          var userReady = Turns.findOne({tableId: tableId, flagged: "ready"});
+          var userInProgress = Turns.findOne({tableId: tableId, flagged: "in_progress"});
+          if(!userReady && !userInProgress) {
             //return alert("ouech");
-            var allUsersIsDone = Turns.find({tableId: tableId}).fetch();
+            var allUsers = Turns.find({tableId: tableId}).fetch();
 
-            allUsersIsDone.forEach(function(turn) {
-              Turns.update({_id: turn._id}, {$set: {'flagged':'waiting'}});
+            allUsers.forEach(function(turn) {
+              Meteor.call('removeHands', turn.user._id, function(error, result) {
+                //return true;
+              });
+              
+              Turns.update({_id: turn._id}, {$set: {'flagged':'ready'}});
             });
           }
         }

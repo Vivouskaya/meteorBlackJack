@@ -1,7 +1,9 @@
 <template name="tablesList">
-  <div class="tables">
+  <div class="tables col-xs-12">
     {{#each tables}}
-      {{> tableItem}}
+    	<div class="col-xs-6">
+      		{{> tableItem}}
+      	</div>
     {{/each}}
   </div>
 </template>

@@ -27,16 +27,6 @@
         <div class="avatar-IA">
           <img class="croupier" src="/img/woman.png" />
         </div>
-        <!--
-        <div class="avatar-player">
-          <img class="player" src="/img/profileActif.png" />
-        </div>
-        <div class="player-card-location">
-          {{#each handsPlayed}}
-            {{>card}}
-          {{/each}}
-        </div>
-        -->
         {{# if yourTurn}}
         <div class="actions">
           <button class="deal">deal</button>
@@ -44,7 +34,13 @@
         {{/if}}
         <!-- inner circle & Title table -->
   		  <div class="inner-circle">
-  		  	<div>[ {{name}} ]</div>
+  		  	<div>
+            <span> 
+              {{ playerSelected.username }}{{#if playerSelected.username}} 's Turn {{/if}}
+            </span>
+            <br/>
+            [ {{name}} ]
+          </div>
   		  </div>
 		  </div>
     </div>

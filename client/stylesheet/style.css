@@ -166,12 +166,16 @@
     width:100%;
     padding-top:50%;
     line-height:1em;
-    margin-top:-0.5em;
+    margin-top:-2em;
     text-align:center;
     color:white;
     font-family: Gun;
     font-size: 4.25vw;
     color: yellow;
+ }
+
+ .inner-circle div span {
+    font-size: 2.25vw;
  }
 
 body {

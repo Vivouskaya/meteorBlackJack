@@ -37,13 +37,23 @@ Template.tablePage.helpers({
         var userWaiting = Turns.findOne({tableId: tableId, flagged: "waiting"});
         if(userWaiting) {
           //return "Waiting";
-          Turns.update({_id: userWaiting._id}, {$set: {'flagged':'ready'}});
-          return "ready";
+          /*
+          var userDone = Turns.findOne({tableId: tableId, flagged: "done"});
+          if(!userDone) {
+          */
+            Turns.update({_id: userWaiting._id}, {$set: {'flagged':'ready'}});
+            return "ready";
+          //}
         }
         else {
-          var usersAllDone = Turns.findOne({tableId: tableId, flagged: "done"});
-          if(usersAllDone) {
-            return "Done";
+          var userDone = Turns.findOne({tableId: tableId, flagged: "done"});
+          if(userDone) {
+            //return alert("ouech");
+            var allUsersIsDone = Turns.find({tableId: tableId}).fetch();
+
+            allUsersIsDone.forEach(function(turn) {
+              Turns.update({_id: turn._id}, {$set: {'flagged':'waiting'}});
+            });
           }
         }
       }

@@ -51,17 +51,15 @@ Template.tablePage.helpers({
           var userReady = Turns.findOne({tableId: tableId, flagged: "ready"});
           var userInProgress = Turns.findOne({tableId: tableId, flagged: "in_progress"});
           if(!userReady && !userInProgress) {
-            
-            //return alert("ouech");
+
             var allUsers = Turns.find({tableId: tableId}).fetch();
             setTimeout(function(){
-              var score_id = Score.findOne({userId: Meteor.userId(), tableId: tableId})._id;
-              Score.update({_id: score_id}, {$set: {score: 0} });
               allUsers.forEach(function(turn) {
                 Meteor.call('removeHands', turn.user._id, function(error, result) {
                   //return true;
                 });
-                
+                var score_id = Score.findOne({userId: Meteor.userId(), tableId: tableId})._id;
+                Score.update({_id: score_id}, {$set: {score: 0} });
                 Turns.update({_id: turn._id}, {$set: {'flagged':'ready'}});
               });
               

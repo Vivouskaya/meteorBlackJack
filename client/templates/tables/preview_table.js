@@ -11,9 +11,11 @@ Template.previewTable.helpers({
 	countUsersOnTable: function(tableId) {
 		var count = 0;
 		var table = Tables.findOne({_id: tableId}).users;
-		table.forEach(function(user) {
-		  count++;
-		});
+		if(table) {
+			table.forEach(function(user) {
+			  count++;
+			});
+		}
 		return count;
 	}
 });

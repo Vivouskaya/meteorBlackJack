@@ -1,7 +1,8 @@
 <template name="tableItem">
   <div class="table">
-    {{#if currentUser}}
-      <a href="{{pathFor 'tablePage'}}" class="discuss btn btn-default">Join {{ name }}</a>
-    {{/if}}
+      {{>previewTable}}
+      {{#if currentUser}}
+      	<a href="{{pathFor 'tablePage'}}" class="discuss btn btn-default">Join {{ name }}</a>
+      {{/if}}
   </div>
 </template>

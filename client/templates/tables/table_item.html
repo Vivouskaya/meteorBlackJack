@@ -1,6 +1,7 @@
 <template name="tableItem">
   <div class="table">
-      <h3><a href="">{{name}}</a></h3>
-      <a href="{{pathFor 'tablePage'}}" class="discuss btn btn-default">Go to table</a>
+    {{#if currentUser}}
+      <a href="{{pathFor 'tablePage'}}" class="discuss btn btn-default">Join {{ name }}</a>
+    {{/if}}
   </div>
 </template>

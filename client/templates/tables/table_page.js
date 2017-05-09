@@ -74,13 +74,25 @@ Template.tablePage.helpers({
     var userInProgressId = Turns.findOne({tableId: tableId, flagged: "in_progress", 'user._id': Meteor.userId()});
 
     return userInProgressId;
+  },
+  doneTurn: function() {
+    var userId = Meteor.userId();
+    var tableId = Router.current().params._id;
+    return Hands.findOne({tableId: tableId, userId: userId});
   }
 });
 
 Template.tablePage.events({
-  'click button': function(e) {
+  'click .deal': function(e) {
   	var tableId = Router.current().params._id;
     Meteor.call('dealCard', tableId, function(error, result) {
+      
+    });
+  },
+
+  'click .done': function(e) {
+    var tableId = Router.current().params._id;
+    Meteor.call('doneCard', tableId, function(error, result) {
       
     });
   }

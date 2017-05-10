@@ -5,10 +5,11 @@ Template.tablePage.onCreated(function() {
   });
 });
 
-Template.tablePage.onDestroyed(function() {  
-	Meteor.call('removeUserOnThisTable', this.data._id, function(error, result) {
+Template.tablePage.onDestroyed(function() { 
+  var currentUser = Meteor.user();
+	Meteor.call('removeUserOnThisTable', this.data._id, currentUser, function(error, result) {
         return true;
-    });
+  });
 });
 
 Template.tablePage.helpers({

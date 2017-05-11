@@ -29,6 +29,14 @@
     margin: 0 auto;
   }
 
+  .right-top-score {
+    position: absolute;
+    left: 80%;
+    bottom: 90%;
+    font-family: Gun;
+    font-size: 1.5vw;
+  }
+
   .right-top-player-selected {
     position: absolute;
     left: 88%;

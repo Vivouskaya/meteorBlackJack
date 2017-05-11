@@ -1,13 +1,10 @@
-Template.tablePage.onCreated(function() {  
-	var tableId = Router.current().params._id;
-	Meteor.call('addUserOnThisTable', tableId, function(error, result) {
-      
-  });
+Template.tablePage.onCreated(function() {
+
 });
 
 Template.tablePage.onDestroyed(function() { 
-  var currentUser = Meteor.user();
-	Meteor.call('removeUserOnThisTable', this.data._id, currentUser, function(error, result) {
+  
+	Meteor.call('removeUserOnThisTable', this.data._id, function(error, result) {
         return true;
   });
 });
@@ -21,6 +18,17 @@ Template.tablePage.helpers({
         ]
     });
 	},
+  currentUserOnTable: function() {
+    currentUserId = Meteor.userId();
+    var tableId = Router.current().params._id;
+    var request = Tables.findOne({_id: tableId, 'users._id': currentUserId});
+    if(request) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  },
   playerSelected: function() {
     var tableId = Router.current().params._id;
     var userInProgress = Turns.findOne({tableId: tableId, flagged: "in_progress"});
@@ -90,11 +98,22 @@ Template.tablePage.events({
       
     });
   },
-
   'click .done': function(e) {
     var tableId = Router.current().params._id;
     Meteor.call('doneCard', tableId, function(error, result) {
       
+    });
+  },
+  'click .sit': function(e) {
+    var tableId = Router.current().params._id;
+    Meteor.call('addUserOnThisTable', tableId, function(error, result) {
+        
+    });
+  },
+  'click .standup': function(e) {
+    var tableId = Router.current().params._id;
+    Meteor.call('removeUserOnThisTable', tableId, function(error, result) {
+    
     });
   }
 });

@@ -40,5 +40,12 @@
   		  </div>
 		  </div>
     </div>
+    <div class="right-top-score">
+      {{#if currentUserOnTable }}
+        <button class="standup">stand up</button>
+      {{ else }}
+        <button class="sit">sit down</button> 
+      {{/if}}
+    </div>
   </div>
 </template>

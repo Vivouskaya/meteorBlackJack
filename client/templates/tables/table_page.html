@@ -22,6 +22,12 @@
         <div class="avatar-IA">
           <img class="croupier" src="/img/woman.png" />
         </div>
+        <div class="card-location">
+          {{#each croupierDealCards}}
+              {{>card}}
+          {{/each}}
+        </div>
+
         {{# if yourTurn}}
         <div class="actions">
           <button class="deal">deal</button>

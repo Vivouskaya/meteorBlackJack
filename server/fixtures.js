@@ -5,6 +5,12 @@ if (Tables.find().count() < 1) {
   Tables.insert({
     name: 'Second Table'
   });
+
+  var allTables = Tables.find().fetch();
+  allTables.forEach(function(table) {
+    //initialisation du score de chaque croupier
+    Score.insert({userId: 'croupierID_'+table._id, tableId: table._id, score: 0});
+  });
 }
 
 if (Cards.find().count() === 0) {

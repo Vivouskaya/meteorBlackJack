@@ -13,7 +13,7 @@ Meteor.setInterval(function () {
 				Tables.update({_id: table._id}, { $pull: { users: {_id: userOffline._id}}});
 				Turns.remove({'user._id': userOffline._id, tableId: table._id});
 				Score.remove({userId: userOffline._id, tableId: table._id});
-				console.log(table.users[username]+' leave table '+ table.name);
+				console.log(table.users+' leave table '+ table.name);
 			});
 			//return console.log(tablesWhereUsers);
 		}
@@ -40,4 +40,30 @@ Meteor.setInterval(function () {
 		}
 	});
 	*/
+
+	
+
+}, 1000);
+
+Meteor.setInterval(function () {
+// cartes croupier
+	var countUsers = 0;
+	var countUsersIsready = 0;
+	var allTables = Tables.find().fetch();
+	allTables.forEach(function(table) {
+		if(table.users){
+			if(table.users.length > 0){
+				var turnsInThisTable = Turns.find({tableId: table._id}).fetch();
+				turnsInThisTable.forEach(function(turn) {
+					if(turn.flagged == "ready" || turn.flagged == "waiting") {
+						countUsersIsready++;
+					}
+					countUsers++;
+				});
+				console.log('Joueurs sur la table: '+countUsers);
+				console.log('Joueurs ready: '+countUsersIsready);
+				if(countUsers == countUsersIsready) { Meteor.call('dealCroupierCard', table._id, function(error, result) {}); }
+			}
+		}
+	});
 }, 1000);

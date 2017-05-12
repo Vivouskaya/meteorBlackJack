@@ -18,6 +18,43 @@ Template.tablePage.helpers({
         ]
     });
 	},
+  /*
+  croupierDealCards: function() {
+    var tableId = Router.current().params._id;
+    var allUsersOnThisTable = Tables.findOne({_id: tableId}).users;
+    var countUsers = 0;
+    var countUsersReady = 0;
+    allUsersOnThisTable.forEach(function(user) {
+      countUsers++;
+      if(user.flagged == "ready") {
+        countUsersReady++;
+      }
+    });
+    if(countUsers != 0 && countUsersReady != 0) {
+      if(countUsers == countUsersReady) {
+        Meteor.call('dealCroupierCard', tableId, function(error, result) {});
+      }
+    }
+    var userId = 'croupierID_'+tableId;
+    return Hands.find({tableId: tableId, userId: userId}, {
+        sort: [
+            ["order", "desc"]
+        ]
+    });
+  },
+  */
+  /*
+  handsCroupier: function() {
+    var tableId = Router.current().params._id;
+    var userId = 'croupierID_'+tableId;
+    return Hands.find({tableId: tableId, userId: userId}, {
+        sort: [
+            ["order", "desc"]
+        ]
+    });
+  },
+  */
+
   currentUserOnTable: function() {
     currentUserId = Meteor.userId();
     var tableId = Router.current().params._id;
@@ -29,6 +66,7 @@ Template.tablePage.helpers({
       return false;
     }
   },
+
   playerSelected: function() {
     var tableId = Router.current().params._id;
     var userInProgress = Turns.findOne({tableId: tableId, flagged: "in_progress"});
@@ -44,7 +82,8 @@ Template.tablePage.helpers({
       }
       else {
         var userWaiting = Turns.findOne({tableId: tableId, flagged: "waiting"});
-        if(userWaiting) {
+        // ATTEND TON TOUR MAMENE (modif 12/05/2017)
+        if(userWaiting && userReady &&  !userInProgress) {
           //return "Waiting";
           /*
           var userDone = Turns.findOne({tableId: tableId, flagged: "done"});
@@ -52,7 +91,13 @@ Template.tablePage.helpers({
           */
             
             Turns.update({_id: userWaiting._id}, {$set: {'flagged':'ready'}});
+
+            // distribution cartes croupier
+            //alert('deal cards');
+            //Meteor.call('dealCroupierCard', tableId, function(error, result) {});
+
             return "ready";
+            
             
           //}
         }
@@ -70,7 +115,11 @@ Template.tablePage.helpers({
                 var score_id = Score.findOne({userId: Meteor.userId(), tableId: tableId})._id;
                 Score.update({_id: score_id}, {$set: {score: 0} });
                 Turns.update({_id: turn._id}, {$set: {'flagged':'ready'}});
+                
               });
+              // distribution cartes croupier
+              //alert('deal cards');
+              //Meteor.call('dealCroupierCard', tableId, function(error, result) {});
               
             }, 3000);
           }
@@ -78,17 +127,20 @@ Template.tablePage.helpers({
       }
     }
   },
+
   yourTurn: function() {
     var tableId = Router.current().params._id;
     var userInProgressId = Turns.findOne({tableId: tableId, flagged: "in_progress", 'user._id': Meteor.userId()});
 
     return userInProgressId;
   },
+
   doneTurn: function() {
     var userId = Meteor.userId();
     var tableId = Router.current().params._id;
     return Hands.findOne({tableId: tableId, userId: userId});
   }
+
 });
 
 Template.tablePage.events({

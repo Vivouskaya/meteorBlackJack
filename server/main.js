@@ -11,9 +11,9 @@ Meteor.setInterval(function () {
 		if(tablesWhereUsersOffline) {
 			tablesWhereUsersOffline.forEach(function(table) {
 				Tables.update({_id: table._id}, { $pull: { users: {_id: userOffline._id}}});
-				Turns.remove({user: userOffline, tableId: table._id});
+				Turns.remove({'user._id': userOffline._id, tableId: table._id});
 				Score.remove({userId: userOffline._id, tableId: table._id});
-				console.log(table);
+				console.log(table.users[username]+' leave table '+ table.name);
 			});
 			//return console.log(tablesWhereUsers);
 		}
